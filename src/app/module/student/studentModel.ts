@@ -134,8 +134,17 @@ const studentSchema = new Schema<TStudent ,studentModel>({
     required: [true, 'Present address is required.'],
   },
  
-  isDeleted:Boolean,
+  isDeleted:{
+    type:Boolean,
+    default:false
+  },
+  admissionSemester:{
+    type:Schema.Types.ObjectId,
+    ref:'academicSemester'
+  },
   profileImage: String,
+},{
+  timestamps:true
 })
 
 

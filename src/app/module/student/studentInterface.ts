@@ -37,6 +37,7 @@ export type TStudent = {
   localeGuardian: LocaleGuardian
   profileImage?: string
   isDeleted:boolean
+  admissionSemester:Types.ObjectId
 }
 // FOR CREATING STATIC 
 export interface studentModel extends Model <TStudent>{
