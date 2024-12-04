@@ -38,6 +38,7 @@ export type TStudent = {
   profileImage?: string
   isDeleted:boolean
   admissionSemester:Types.ObjectId
+  academicDepertment:Types.ObjectId
 }
 // FOR CREATING STATIC 
 export interface studentModel extends Model <TStudent>{

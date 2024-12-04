@@ -142,6 +142,10 @@ const studentSchema = new Schema<TStudent ,studentModel>({
     type:Schema.Types.ObjectId,
     ref:'academicSemester'
   },
+  academicDepertment:{
+    type:Schema.Types.ObjectId,
+    ref:'academicDepertment'
+  },
   profileImage: String,
 },{
   timestamps:true

@@ -69,7 +69,8 @@ const StudentValidationSchemaForZod = z.object({
         required_error: 'Present address is required.',
       }),
       profileImage: z.string().optional(),
-      admissionSemester:z.string()
+      admissionSemester:z.string(),
+      academicDepertment:z.string()
     })
   }),
 })
