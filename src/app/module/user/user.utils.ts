@@ -1,7 +1,6 @@
-import { TcreateAcademicSemesterService } from "../academicSemester/academicSemesterInterface";
 import { User } from "./userModel";
 
-const findLastStudent = async (): Promise<string | undefined> => {
+const findLastStudent = async () => {
     const lastStudent = await User.findOne(
         { role: "student" },
         { id: 1, _id: 0 }
@@ -12,7 +11,7 @@ const findLastStudent = async (): Promise<string | undefined> => {
     return lastStudent?.id;
 };
 
-const generateStudentId = async (payload: TcreateAcademicSemesterService): Promise<string> => {
+const generateStudentId = async (payload:any) => {
     let currentId = "0";
 
     const lastStudentId = await findLastStudent();

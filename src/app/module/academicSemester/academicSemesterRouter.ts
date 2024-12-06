@@ -1,7 +1,6 @@
 import { Router } from "express";
 import validateRequest from "../../middleware/validateRequest";
 import { AcademicSemesterController } from "./academicSemesterController";
-import academicSemesterUpdateValidation from "./academicSemesterUpdateValidation";
 import AcademicSemesterSchemaValidation from "./academicSemesterValidation";
 
 const router = Router()
@@ -12,7 +11,7 @@ const router = Router()
     AcademicSemesterController.getAllAcademicController)
     router.get('/:id',
     AcademicSemesterController.getSingleAcademicController)
-    router.put('/update-academic-semester/:id',validateRequest(academicSemesterUpdateValidation),
+    router.put('/update-academic-semester/:id',validateRequest(AcademicSemesterSchemaValidation),
     AcademicSemesterController.updateSingleAcademicController)
 
 export const academicSemester = router 
