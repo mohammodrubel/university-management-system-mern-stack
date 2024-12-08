@@ -6,7 +6,9 @@ import updateacademicDepertmentValidation from "./academicDepertmentValidation";
 
 const router = Router()
 
-    router.post('/create-academic-depertment',validateRequest(academicDepertmentValidation),AcademicDepertmentController.createAcademicDepertmentController)
+    router.post('/create-academic-depertment',
+        // validateRequest(academicDepertmentValidation),
+        AcademicDepertmentController.createAcademicDepertmentController)
 
     
     router.get('/get-all-academic-depertment',AcademicDepertmentController.getAllAcademicDepertmentController)

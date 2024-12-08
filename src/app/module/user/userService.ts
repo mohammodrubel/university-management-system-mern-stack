@@ -1,7 +1,7 @@
 import httpStatus from 'http-status'
 import mongoose from 'mongoose'
 import config from '../../config'
-import AppError from '../../middleware/App__Error'
+import AppError from '../../ERROR/App__Error'
 import { AcademicSemester } from '../academicSemester/academicSemesterModel'
 import { TStudent } from '../student/studentInterface'
 import { Student } from '../student/studentModel'
@@ -49,6 +49,8 @@ const createStudentService = async (password: string, student: TStudent) => {
     } catch (error) {
       await session.abortTransaction();
       throw new Error('faild to create student')
+      // console.log(error)
+      // throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create studenttttt');
     }
   };
   

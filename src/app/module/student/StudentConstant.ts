@@ -1,0 +1,1 @@
+export const studentSearchableFields = ['email', 'name.firstName', 'name.middleName', 'name.lastName', 'permanentAddress', 'presentAddress', 'localeGuardian.name', 'localeGuardian.occupation', 'localeGuardian.middleName', 'localeGuardian.lastName','id']

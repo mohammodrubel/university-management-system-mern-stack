@@ -1,7 +1,7 @@
 import cors from 'cors'
 import express, { Application, Request, Response } from 'express'
-import global__Error__handeler from './middleware/global__Error__handeler'
-import notFound from './middleware/not__found'
+import global__Error__handeler from './ERROR/global__Error__handeler'
+import notFound from './ERROR/not__found'
 import router from './router'
 const app: Application = express()
 
@@ -13,6 +13,7 @@ app.use(cors())
 app.use(`/api/v1`, router)
 
 app.get('/', (req: Request, res: Response) => {
+  // Promise.reject()
   res.send('Hello World!')
 })
 

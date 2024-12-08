@@ -1,5 +1,5 @@
 import httpStatus from "http-status";
-import AppError from "../../middleware/App__Error";
+import AppError from "../../ERROR/App__Error";
 import { academicSemesterNameAndCode } from "./academicSemesterConstant";
 import { TAaademicSemester } from "./academicSemesterInterface";
 import { AcademicSemester } from "./academicSemesterModel";

@@ -10,12 +10,6 @@ const createStudentController = CatchAsync(
 
     //   if password not given use default password
     const result = await UserService.createStudentService(password, student)
-
-    res.status(200).json({
-      success: true,
-      message: 'student is created successfully',
-      data: result,
-    })
     sendResponce(res, {
       statusCode: httpStatus.CREATED,
       success: true,

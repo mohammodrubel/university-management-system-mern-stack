@@ -6,7 +6,7 @@ import { StudentServices } from './studentService'
 
 const getAllStudentController = CatchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const result = await StudentServices.getAllStudentService()
+    const result = await StudentServices.getAllStudentService(req.query)
     sendResponce(res, {
       statusCode: httpStatus.OK,
       success: true,
