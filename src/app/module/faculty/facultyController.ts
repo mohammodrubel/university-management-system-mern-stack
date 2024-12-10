@@ -42,3 +42,11 @@ const deleteFacultyController = CatchAsync(async (req, res, next) => {
         data: result
     })
 })
+
+
+export const FacultyController = {
+    getAllFacultyController,
+    getSingleFacultyController,
+    updateFacultyController,
+    deleteFacultyController
+}
