@@ -41,9 +41,9 @@ export type TStudent = {
   academicDepertment:Types.ObjectId
 }
 // FOR CREATING STATIC 
-export interface studentModel extends Model <TStudent>{
-  isUserExists (id:string) : Promise <TStudent | null>
-}
+// export interface studentModel extends Model <TStudent>{
+//   isUserExists (id:string) : Promise <TStudent | null>
+// }
 // FOR CREATING INSTANCE 
 // export type studentMethod = {
 //   isUserExist(id: string): Promise<TStudent | null>;

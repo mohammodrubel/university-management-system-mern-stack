@@ -4,10 +4,15 @@ import { usreRouter } from "../module/user/userRoute";
 import { academicSemester } from "../module/academicSemester/academicSemesterRouter";
 import { academicFacultyRouter } from "../module/academicFaculty/academicFacultyRouter";
 import { academicDepertmentRouter } from "../module/academicDepartment/academicDepartmentRouter";
+import { AdminRouter } from "../module/admin/adminRouter";
 
 const router = Router()
 
 const webRouter = [
+    {
+        path:'/admin',
+        routes:AdminRouter
+    },
     {
         path: '/users',
         routes:  usreRouter

@@ -1,7 +1,6 @@
-import { Schema, model } from 'mongoose'
+import { model, Schema } from 'mongoose'
 import validator from 'validator'
-import { Guardian, Name, studentModel, TStudent } from './studentInterface'
-import bcrypt from 'bcrypt'
+import { Guardian, Name, TStudent } from './studentInterface'
 
 
 const UserNameSchema = new Schema<Name>({
@@ -52,7 +51,7 @@ const GuardianSchema = new Schema<Guardian>({
   },
 })
 
-const studentSchema = new Schema<TStudent ,studentModel>({
+const studentSchema = new Schema<TStudent>({
   id: {
     type: String,
     unique: true,
@@ -158,4 +157,4 @@ studentSchema.statics.isUserExists = async function (id:string){
   return existingUser
 }
 
-export const Student = model<TStudent, studentModel>('Student', studentSchema)
+export const Student = model<TStudent>('Student', studentSchema)
