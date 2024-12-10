@@ -100,7 +100,6 @@ const updateStudentService = async (id: string, data: Partial<TStudent>) => {
             modifyUpdatedData[`localeGuardian.${key}`] = value
         }
     }
-    console.log(modifyUpdatedData)
     const reuslt = await Student.findOneAndUpdate({ id }, modifyUpdatedData, { new: true, runValidators: true })
     return reuslt
 }
