@@ -18,7 +18,7 @@ const getSingleFacultyController = CatchAsync(async (req, res, next) => {
     sendResponce(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: 'single Faculty retrieved successfully',
+        message: 'single Faculty  successfully',
         data: result
     })
 })

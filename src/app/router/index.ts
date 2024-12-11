@@ -1,21 +1,23 @@
 import { Router } from "express";
+import { academicDepertmentRouter } from "../module/academicDepartment/academicDepartmentRouter";
+import { academicFacultyRouter } from "../module/academicFaculty/academicFacultyRouter";
+import { academicSemester } from "../module/academicSemester/academicSemesterRouter";
+import { AdminRouter } from "../module/admin/adminRouter";
+import { courseRouter } from "../module/course/courseRouter";
+import { facultyRouter } from "../module/faculty/facultyRouter";
 import { studentRoutes } from "../module/student/studentRoute";
 import { usreRouter } from "../module/user/userRoute";
-import { academicSemester } from "../module/academicSemester/academicSemesterRouter";
-import { academicFacultyRouter } from "../module/academicFaculty/academicFacultyRouter";
-import { academicDepertmentRouter } from "../module/academicDepartment/academicDepartmentRouter";
-import { AdminRouter } from "../module/admin/adminRouter";
 
 const router = Router()
 
 const webRouter = [
     {
-        path:'/admin',
-        routes:AdminRouter
+        path: '/admin',
+        routes: AdminRouter
     },
     {
         path: '/users',
-        routes:  usreRouter
+        routes: usreRouter
     },
     {
         path: '/students',
@@ -32,6 +34,14 @@ const webRouter = [
     {
         path: '/academic-depertment',
         routes: academicDepertmentRouter
+    },
+    {
+        path: '/faculty',
+        routes: facultyRouter
+    },
+    {
+        path: '/course',
+        routes: courseRouter
     },
 ]
 
