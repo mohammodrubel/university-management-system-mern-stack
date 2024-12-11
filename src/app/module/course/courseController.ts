@@ -51,7 +51,31 @@ const softDeleteCourseController = CatchAsync(async(req,res,next)=>{
     sendResponce(res,{
         statusCode:httpStatus.OK,
         success:true,
-        message:'Course Created successfull',
+        message:'Delete Course successfully complete',
+        data:result
+    })
+})
+const assignFacultyCourseController = CatchAsync(async(req,res,next)=>{
+    const {courseId} = req.params 
+    const {faculties} = req.body
+    console.log(courseId,faculties)
+    const result = await courseService.assingFacultyControllerService(courseId,faculties)
+    sendResponce(res,{
+        statusCode:httpStatus.OK,
+        success:true,
+        message:'Faculty Created successfull',
+        data:result
+    })
+})
+const removeFacultyCourseController = CatchAsync(async(req,res,next)=>{
+    const {courseId} = req.params 
+    const {faculties} = req.body
+    console.log(courseId,faculties)
+    const result = await courseService.removeFacultyControllerService(courseId,faculties)
+    sendResponce(res,{
+        statusCode:httpStatus.OK,
+        success:true,
+        message:'Faculty remove successfull',
         data:result
     })
 })
@@ -61,5 +85,7 @@ export const courseController = {
     getAllourseController,
     getSingleCourseController,
     updateCourseController,
-    softDeleteCourseController
+    softDeleteCourseController,
+    assignFacultyCourseController,
+    removeFacultyCourseController
 }

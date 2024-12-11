@@ -12,3 +12,8 @@ export type TCourse = {
     credits:number,
     isDeleted:boolean
 }
+
+export type TassignFaculty = {
+    course:Types.ObjectId,
+    faculties:[Types.ObjectId]
+}
