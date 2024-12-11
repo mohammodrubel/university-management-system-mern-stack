@@ -8,6 +8,7 @@ export type TCourse = {
     title:string,
     prefix:string,
     code:number,
-    preRequisiteCourse:[],
-    cradits:number
+    preRequisiteCourse:[TpreRequisiteCourses],
+    credits:number,
+    isDeleted:boolean
 }
