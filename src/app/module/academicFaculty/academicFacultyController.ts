@@ -12,8 +12,8 @@ const createAcademicFacultyController = CatchAsync(async (req,res,next)=>{
         data:result
     })
 })
-const getAllAcademicFacultyController = CatchAsync(async (_req,res,next)=>{
-    const result = await AcademicFacultyController.getAllAcademicFacultyController
+const getAllAcademicFacultyController = CatchAsync(async (req,res,next)=>{
+    const result = await AcademicFacultyService.getAllAcademicFacultyService
     sendResponce(res,{
         statusCode:httpStatus.OK,
         success:true,

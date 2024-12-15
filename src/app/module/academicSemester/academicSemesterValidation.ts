@@ -19,7 +19,7 @@ const MonthEnum = z.enum([
 // Define the Zod schema for TAaademicSemester
 export const AcademicSemesterSchemaValidation = z.object({
     body: z.object({
-        name: z.enum(["Autumn", "Summer", "Fall"]),
+        name: z.enum(["Autumn", "Summar", "Fall"]),
         code: z.enum(["01", "02", "03"]),
         year: z.string(),
         startMonth: MonthEnum,

@@ -5,7 +5,7 @@ import { TAaademicSemester } from "./academicSemesterInterface";
 const academicSemesterSchema = new Schema<TAaademicSemester>({
     name: {
         type: String,
-        enum: ['Autumn', 'Summer', 'Fall'],
+        enum: ['Autumn', 'Summar', 'Fall'],
         required: true,
     },
     code: {
