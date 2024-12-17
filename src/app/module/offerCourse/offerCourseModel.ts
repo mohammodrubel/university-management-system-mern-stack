@@ -42,7 +42,7 @@ const offerCourseSchema = new Schema<TOfferCourse>({
         required: true
     },
     days: {
-        type: String,
+        type: [String],
         enum: ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"],
         required: true
     },

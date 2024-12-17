@@ -10,7 +10,12 @@ export const offerCourseSchemaValidation = z.object({
         faculty: z.string(),
         maxCapacity: z.number(),
         section: z.number(),
-        days: z.enum(["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]),
+        days: z.array(
+            z.enum(["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"] as [string, ...string[]], {
+              required_error: 'Days are required',
+              invalid_type_error: 'Days must be an array of strings',
+            }),
+          ),
         startTime: z.string().refine((time) => {
             const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
             return regex.test(time);

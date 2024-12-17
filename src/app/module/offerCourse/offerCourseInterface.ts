@@ -11,7 +11,7 @@ export type TOfferCourse = {
     faculty: Types.ObjectId
     maxCapacity: Number
     section: Number
-    days: days
+    days: days[]
     startTime: string
     endTime: string
 }

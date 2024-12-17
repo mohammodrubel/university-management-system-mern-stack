@@ -10,6 +10,7 @@ import { OfferCourse } from "./offerCourseModel";
 
 const createOfferCourseService = async (payload: TOfferCourse) => {
     const { semesterRegistration, academicFaculty, academicDepartment, course, faculty, maxCapacity, section, days, startTime, endTime } = payload;
+    console.log(payload)
 
     // Check if semester registration exists
     const semesterRegisterIsExist = await SemesterRegistration.findById(semesterRegistration);
@@ -42,16 +43,34 @@ const createOfferCourseService = async (payload: TOfferCourse) => {
     }
 
     // Check if academic semester exists
-    const academicSemesterIsExist = semesterRegisterIsExist.academicSemester;
-    if (!academicSemesterIsExist) {
-        throw new AppError(httpStatus.NOT_FOUND, 'Academic Semester Not Found');
+    const academicSemester= semesterRegisterIsExist.academicSemester;
+
+    const isDepertmentExistOnFaculty = await AcademicDepertment.findOne({
+        _id:payload.academicDepartment,
+        academicFaculty
+    })
+
+    if(!isDepertmentExistOnFaculty){
+        throw new AppError(httpStatus.NOT_FOUND,'depertment not fuond under the faculty')
     }
 
-    // Check if department belongs to the faculty
-    const ifDepartmentBelongToFaculty = await AcademicDepertment.findOne({ academicFaculty, academicDepartment });
-    if (ifDepartmentBelongToFaculty) {
-        throw new AppError(httpStatus.NOT_FOUND, `This ${academicDepartment} does not belong to this ${academicFaculty}`);
+    // offer course checked 
+    const isOfferedCourseExistWithSameSemesterCourseAndSection = await OfferCourse.findOne({
+        semesterRegistration,
+        course,
+        section
+    })
+
+    if(isOfferedCourseExistWithSameSemesterCourseAndSection){
+        throw new AppError(
+            httpStatus.CONFLICT,
+            'Offered Course already exist with same semester, course and section',
+          );
     }
+   
+
+    const result = await OfferCourse.create({...payload,academicSemester})
+    return result
 }
 
 const getAllOfferCourseService = async () => {
