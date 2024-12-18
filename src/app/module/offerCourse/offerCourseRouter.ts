@@ -12,7 +12,7 @@ const router = Router()
 
     router.get('/get-single-offer-course/:id',offerCourseController.getSingleCourseController)
 
-    router.put('/update-offer-course/:id',validateRequest(offerCourseUpdateSchemaValidation),offerCourseController.updateCourseController)
+    router.patch('/update-offer-course/:id',validateRequest(offerCourseUpdateSchemaValidation),offerCourseController.updateCourseController)
     
     router.delete('/delete-offer-course/:id',offerCourseController.softDeleteCourseController)
 

@@ -43,13 +43,19 @@ export const offerCourseUpdateSchemaValidation = z.object({
         maxCapacity: z.number().optional(),
         section: z.number().optional(),
         days: z.enum(["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]).optional(),
-        startTime: z.string().optional().refine((time)=>{
-            const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/
-            // return regex.test(time)
+        startTime: z.string().refine((time) => {
+            const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+            return regex.test(time);
+        }, {
+            message: 'Invalid time format. Expected HH:mm format. Example: 09:00 or 23:59.'
         }),
-        endTime: z.string().optional().refine((time)=>{
-            const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/
-            // return regex.test(time)
+        endTime: z.string().refine((time) => {
+            const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+            return regex.test(time);
+        }, {
+            message: 'Invalid time format. Expected HH:mm format. Example: 09:00 or 23:59.'
         }),
     })
 });
+
+

@@ -1,6 +1,6 @@
 import { Types } from "mongoose"
 
-type days = "Sat" | "Sun" | "Mon" | "Tue" | "Wed" | "Thu" | "Fri"
+export type days = "Sat" | "Sun" | "Mon" | "Tue" | "Wed" | "Thu" | "Fri"
 
 export type TOfferCourse = {
     semesterRegistration: Types.ObjectId

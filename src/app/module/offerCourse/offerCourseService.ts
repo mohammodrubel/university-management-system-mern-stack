@@ -7,6 +7,7 @@ import { Faculty } from "../faculty/facultyModel";
 import { SemesterRegistration } from "../semesterRegistration/semesterRegistrationModel";
 import { TOfferCourse } from "./offerCourseInterface";
 import { OfferCourse } from "./offerCourseModel";
+import { hasTimeConfilgs } from "./offerCourse.utils";
 
 const createOfferCourseService = async (payload: TOfferCourse) => {
     const { semesterRegistration, academicFaculty, academicDepartment, course, faculty, maxCapacity, section, days, startTime, endTime } = payload;
@@ -67,20 +68,81 @@ const createOfferCourseService = async (payload: TOfferCourse) => {
             'Offered Course already exist with same semester, course and section',
           );
     }
-   
 
+    const assignSchedule = await OfferCourse.find({
+        semesterRegistration,
+        faculty,
+        days: {$in:days}
+    }).select("days startTime endTime")
+
+    const newSchedule = {
+        days,
+        startTime,
+        endTime
+    }
+
+    if(hasTimeConfilgs(assignSchedule,newSchedule)){
+        throw new AppError(
+            httpStatus.CONFLICT,
+            'The faculty is unavailable during this time slot. Please choose a different time or day.'
+        );
+    }
+    
     const result = await OfferCourse.create({...payload,academicSemester})
     return result
 }
 
 const getAllOfferCourseService = async () => {
-
+    const result = await OfferCourse.find({})
+    return result 
 }
-const getSingleOfferCourseService = async () => {
-
+const getSingleOfferCourseService = async (id:string) => {
+    const result = await OfferCourse.findById(id)
+    return result
 }
-const updateOfferCourseService = async () => {
+const updateOfferCourseService = async (
+    payload: Pick<TOfferCourse, "faculty" | "startTime" | "endTime" | "days">,
+    id: string
+) => {
+    const {faculty,startTime,endTime,days} = payload
+    const offerCourseIsExist = await OfferCourse.findById(id)
+    if (!offerCourseIsExist) {
+        throw new AppError(httpStatus.NOT_FOUND, 'The provided ID does not match any existing offer course. Please check the ID and try again.');
+    }
 
+   
+
+    const isFacultyExist = await Faculty.findById(payload.faculty)
+    if(isFacultyExist){
+        throw new AppError(httpStatus.NOT_FOUND, 'The provided ID does not match any existing Faculty. Please check the ID and try again.');
+    }
+
+
+    const semesterRegistration = offerCourseIsExist.semesterRegistration
+    const semesterRegisterStatus =await SemesterRegistration.findById(semesterRegistration)
+        
+    if(semesterRegisterStatus?.status !== 'UPCOMING'){
+        throw new AppError(httpStatus.NOT_FOUND,`you can not update this offer course ${semesterRegisterStatus}`);
+    }
+
+    const assignSchedule = await OfferCourse.find({
+        semesterRegistration,
+        faculty,
+        days:{$in:days},
+    }).select("days startTime endTime")
+
+    const newSchedule = {
+        days,
+        startTime,
+        endTime
+    }
+
+    if(hasTimeConfilgs(assignSchedule,newSchedule)){
+        throw new AppError(httpStatus.CONFLICT,'this faculty is not avalable at the time choose other time or day')
+    }
+
+    const result = await OfferCourse.findByIdAndUpdate(id,payload,{new:true})
+    return result
 }
 const softDeleteOfferCourseService = async () => {
 
