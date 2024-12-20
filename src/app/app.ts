@@ -4,10 +4,12 @@ import global__Error__handeler from './ERROR/global__Error__handeler'
 import notFound from './ERROR/not__found'
 import router from './router'
 const app: Application = express()
+import cookieParser  from 'cookie-parser'
 
 // perser
 app.use(express.json())
 app.use(cors())
+app.use(cookieParser())
 
 // router
 app.use(`/api/v1`, router)

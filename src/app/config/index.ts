@@ -9,5 +9,7 @@ export default {
   default__password:process.env.DEAFULT__PASSWORD,
   node__Env:process.env.NODE__ENV,
   jwt__access__token__secret :process.env.JWT__ACCESS__TOKEN__SECRET,
-  jwt__refresh__toekn__secret:process.env.JWT__REFRESH__TOKEN__SECRET
+  jwt__refresh__toekn__secret:process.env.JWT__REFRESH__TOKEN__SECRET,
+  jwt__access__token__expire__in:process.env.JWT__ACCESS__TOKEN__TIME__EXPIRE__IN,
+  jwt__refresh__token__expire__in:process.env.JWT__REFRESH__TOKEN__TIME__EXPIRE__IN
 }

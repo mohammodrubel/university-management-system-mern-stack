@@ -21,10 +21,22 @@ const loginUserController = CatchAsync(async (req,res,next)=>{
         } 
     })
 })
+const refreshTokenController = CatchAsync(async (req,res,next)=>{
+    const {refreshToken} = req.cookies
+    const result = await authService.refreshToken(refreshToken)
+   
+    sendResponce(res,{
+        statusCode:httpStatus.OK,
+        success:true,
+        message:'login successfully',
+        data:result
+    })
+})
 
 
 
 
 export const authController = {
-    loginUserController
+    loginUserController,
+    refreshTokenController
 }
