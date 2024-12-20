@@ -14,7 +14,8 @@ const UserSchema = new Schema<TUser>({
     },
     password:{
         type:String,
-        required:true
+        required:true,
+        // select:0
     },
     needPasswordChange:{
         type:Boolean,
